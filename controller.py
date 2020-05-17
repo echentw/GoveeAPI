@@ -28,15 +28,15 @@ def get_brightness_hex(bright):
     return "".join(bins_str)
 
 def write_data(data, addr):
-    gatt.sendline(f"connect {addr}")
+    gatt.sendline("connect {}".format(addr))
     try:
         gatt.expect("Connection successful", timeout=5)
     except pexpect.exceptions.TIMEOUT:
         dev = addr_dev_dict[addr]
-        print(f"Failed to connect to {dev}")
+        print("Failed to connect to {}".format(dev))
         return
 
-    gatt.sendline(f"char-write-cmd {handle_hex} {data}")
+    gatt.sendline("char-write-cmd {} {}".format(handle_hex, data))
     gatt.expect(".*")
     gatt.sendline("disconnect")
     gatt.expect(".*")
@@ -44,12 +44,12 @@ def change_color(rgbt, addr):
     r, g, b = rgbt
     hexstr = get_rgb_hex(r,g,b)
     write_data(hexstr, addr)
-    print(f"Changed {addr_dev_dict[addr]} color to {rgbt}")
+    print("Changed {} color to {}".format(addr_dev_dict[addr], rgbt))
 
 def change_brightness(bright, addr):
     hexstr = get_brightness_hex(bright)
     write_data(hexstr, addr)
-    print(f"Changed {addr_dev_dict[addr]} brightness to {bright}")
+    print("Changed {} color to {}".format(addr_dev_dict[addr], bright))
 
 RED = (255,0,0)
 GREEN = (0,255,0)
