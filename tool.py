@@ -4,6 +4,8 @@ from math import floor
 import argparse
 import signal
 from constants import *
+import my_stuff
+
 """
     To parse device option passed to command line, enter in device names (bed, window, shelf, etc)
     followed by an list consisting of their address. If you have a 'scene' like a bedroom consisting
@@ -11,7 +13,9 @@ from constants import *
     Include 'all' as a list of all of your device addresses as well.
 """
 name_addr_dict = {
-
+  "bedbug": [
+    my_stuff.devices["bedbug"],
+  ]
 }
 
 ps = argparse.ArgumentParser(description="Govee Home Control Script")

@@ -1,2 +1,4 @@
 __pycache__
 *.log
+my_stuff.py
+*.swp

@@ -1,7 +1,7 @@
-# format- "device-name": "device-address"
-devices = {
+import my_stuff
 
-}
+# format- "device-name": "device-address"
+devices = my_stuff.devices
 device_names = list(devices.keys())
 addr_dev_dict = {v:k for k,v in devices.items()}
 handle = 21
